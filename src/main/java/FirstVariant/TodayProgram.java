@@ -42,14 +42,15 @@ public class TodayProgram {
     public void printAllByPeriod(String channel, BroadcastsTime start, BroadcastsTime end){
         List<TVProgram> programs = programsByChannel.get(channel);
         int countOfPrograms = programs.size();
-        int index = -1;
-        while (index != countOfPrograms){
+        int index = 0;
+        while (index != countOfPrograms - 1){
             if (programs.get(index).getTime().before(start)) index++;
+            else break;
         }
-        while (index != countOfPrograms && programs.get(index).getTime().before(end)){
+        while (index != countOfPrograms - 1 && programs.get(index).getTime().before(end)){
             System.out.println(programs.get(index++));
         }
-        if (index == countOfPrograms){
+        if (index == countOfPrograms - 1){
             System.out.println("Нет программ");
         }
     }
