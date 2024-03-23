@@ -40,6 +40,6 @@ public class BroadcastsTime implements Comparable<BroadcastsTime> {
 
     @Override
     public int compareTo(BroadcastsTime o) {
-        return this.hour * 60 + this.minute - o.hour * 60 - minute;
+        return this.hour * 60 + this.minute - o.hour * 60 - o.minute;
     }
 }
