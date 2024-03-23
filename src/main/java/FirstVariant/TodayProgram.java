@@ -54,6 +54,8 @@ public class TodayProgram {
         }
     }
     private void createMapAndList(List<String> readedFile){
+        programsByChannel = new HashMap<>();
+        allPrograms = new ArrayList<>();
         String currChannel = "";
         for (int i = 0; i < readedFile.size(); ++i){
             if (readedFile.get(i).charAt(0) == '#') {
@@ -61,7 +63,8 @@ public class TodayProgram {
                 programsByChannel.put(readedFile.get(i), new ArrayList<>());
             }
             else {
-                TVProgram currProgram = new TVProgram(currChannel, readedFile.get(i), new BroadcastsTime(readedFile.get(++i)));
+                System.out.println(readedFile.get(i));
+                TVProgram currProgram = new TVProgram(currChannel, new BroadcastsTime(readedFile.get(i)), readedFile.get(++i));
                 programsByChannel.get(currChannel).add(currProgram);
                 allPrograms.add(currProgram);
             }
@@ -69,7 +72,7 @@ public class TodayProgram {
         Comparator<TVProgram> comparator = new Comparator<TVProgram>() {
             @Override
             public int compare(TVProgram o1, TVProgram o2) {
-                return o2.getTime().compareTo(o1.getTime());
+                return o1.getTime().compareTo(o2.getTime());
             }
         };
         allPrograms.sort(comparator);

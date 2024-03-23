@@ -7,6 +7,7 @@ public class BroadcastsTime implements Comparable<BroadcastsTime> {
     private byte minute;
     public BroadcastsTime(String time){
         String[] hoursAndMinutes = time.split(":");
+        System.out.println(hoursAndMinutes[0]);
         if (hoursAndMinutes.length != 2) throw new InputMismatchException();
         try {
             hour = (byte) Byte.parseByte(hoursAndMinutes[0]);
@@ -35,7 +36,7 @@ public class BroadcastsTime implements Comparable<BroadcastsTime> {
 
     @Override
     public String toString() {
-        return (hour > 10 ? hour : "0" + hour) + ":" + (minute > 10 ? minute : "0" + minute);
+        return (hour >= 10 ? hour : "0" + hour) + ":" + (minute >= 10 ? minute : "0" + minute);
     }
 
     @Override
